@@ -1,0 +1,27 @@
+{
+  "name": "makalah-matdis",
+  "version": "1.0.0",
+  "description": "Tugas Makalah IF2120 Matematika Diskrit",
+  "directories": {
+    "doc": "docs"
+  },
+  "watch": {
+    "makalah": {
+      "patterns": [
+        "src",
+        "test"
+      ],
+      "extensions": "tex,cls"
+    }
+  },
+  "scripts": {
+    "watch": "npm-watch makalah",
+    "makalah": "make"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "npm-watch": "^0.11.0"
+  }
+}
