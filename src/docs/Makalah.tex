@@ -7,6 +7,7 @@
 \usepackage{textcomp}
 \usepackage{xcolor}
 \usepackage{fancyhdr}
+\usepackage[outputdir=docs]{minted}
 
 \def\abstractname{Abstrak}
 \def\IEEEkeywordsname{Kata Kunci}
@@ -77,8 +78,42 @@ Steganografi ini memiliki kelebihan, yaitu data yang dikirimkan tidak menarik pe
 
 \subsection{Terminologi Dasar Steganografi}
 
-Dalam Steganografi, dikenal beberapa terminologi dasar. Berikut ini adalah beberapa terminologi dasar yang perlu diketahui:
+Dalam Steganografi, dikenal beberapa terminologi dasar. Berikut ini adalah beberapa terminologi dasar yang perlu diketahui: \cite{b1}
 
+\begin{itemize}
+    \item Pesan tersembunyi adalah pesan yang disisipkan pada sebuah medium baik itu berupa video, image, audio, ataupun teks. 
+    \item Cover adalah media yang digunakan untuk menyisipkan pesan.
+    \item \emph{Stego-object} adalah media yang telah tersisipkan pesan tersembunyi di dalamnya.
+    \item Steganalisis adalah cabang ilmu yang membahas mengenai pendeteksian pesan tersembunyi yang ada pada sebuah media. Terdapat beberapa jenis metode dalam steganalisis ini yang akan dijelaskan pada bagian selanjutnya.  
+\end{itemize}
+
+\subsection{Representasi Bilangan Bulat}
+Pada dasarnya, komputer menyimpan dan memproses informasi dalam bentuk sinyal duanilai. Setiap sinyal tersebut merepresentasikan angka dalam bentuk bit. Kumpulan dari berbagai bit dapat memberikan makna dari suatu data  yang sedang diproses. Kumpulan dari berbagai bit ini dapat membantuk sebuah bilangan yang disebut dengan bilangan biner.
+
+Dalam dunia keinformatikaan, terdapat dua jenis representasi bilangan bulat yang sering digunakan yaitu sebagai berikut:
+\begin{itemize}
+    \item \textbf{Bilangan Biner} \\
+    Bilangan biner yaitu bilangan dengan basis dua. Bilangan biner hanya terdapat dua simbol yang tersedia, yaitu 0 dan 1. Konversi bilangan biner ke bilangan desimal didefinisikan pada persamaan 1.
+    
+    \begin{equation}
+         d = \sum_{i=0}^{n} b_i \cdot 2^{i} 
+    \end{equation}
+
+    Nilai $ b_i $ melambangkan digit biner ke-i dan $ d $ adalah bilangan desimal hasil konversi. \\
+
+
+    \item \textbf{Bilangan Hexadesimal} \\
+    Bilangan Hexadesimal adalah bilangan dengan basis 16. Dua digit dari bilangan ini merepresentasikan satu byte (8-bit). Bilangan Hexadesimal ini dapat meringkas penulisan biner dan juga memudahkan alam penganalisisan bilangan biner. Bilangan hexadesimal ini pada dasarnya terdiri dari simbol 0 sampai dengan 9 dilanjutkan dengan simbol A,B,C,D,E, dan F. Berikut ini adalah rumus konversi bilangan heksadesimal ke bilangan desimal.
+
+    \begin{equation}
+        d = \sum_{i=0}^n h_i \cdot 16^{i}
+    \end{equation}
+
+    Nilai $ h_i $ menyatakan digit hexadesimal ke-i. Bila digit Hexadesimal bernilai $ \text{A} $ maka digantikan dengan nilai $ 10 $. Begitu pula dengan nilai $ \text{B} $ yang digantikan dengan nilai 11. Hal ini berlaku seterusnya hingga $ \text{F} $.
+\end{itemize}
+
+\subsection{Signifikansi Bit}
+Terdapat dua buah definisi yang perlu diperhatikan mengenai signifikansi bit.Misalkan terdapat sebuah bilangan bulat dengan $ w $-digit dan urutan digitnya adalah $ [b_{w-1}, b_{w-2}, \cdots, b_{2}, b_{1}, b_{0}] $. Digit $ b_{w-1} $ disebut sebagai \emph{most significant bit} atau biasa disingkat sebagai MSB. Bit $ b_{0} $ disebut sebagai \emph{least significant bit} atau biasa disingkat sebagai LSB.
 
 \section{Pembahasan}
 Before you begin to format your paper, first write and save the content as a 
@@ -273,6 +308,7 @@ citation first, followed by the original foreign-language citation \cite{b6}.
 \begin{thebibliography}{00}
 \bibitem{b1} Munir, Rinaldi. 2019. \emph{Kriptografi Edisi Kedua}. Bandung: Penerbit Informatika 
 \bibitem{b2} Munir, RInaldi. 2020. \emph{Matematika Diskrit Revisi Ketujuh}. Bandung: Penerbit Informatika
+\bibitem{b3} HIdayatullah, Priyanto. 2017. \emph{Pengolahan Citra Digital Teori dan Aplikasi Nyata}. Bandung: Penerbit Informatika.
 
 \end{thebibliography}
 \vspace{12pt}

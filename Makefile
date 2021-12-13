@@ -1,7 +1,7 @@
 all: makalah
 
 makalah: src/docs/Makalah.tex
-	@pdflatex -halt-on-error  -output-directory ./docs $<
+	@pdflatex -shell-escape -halt-on-error  -output-directory ./docs $<
 
 watch:
 	@npm run watch
