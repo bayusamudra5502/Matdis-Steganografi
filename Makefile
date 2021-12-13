@@ -6,4 +6,7 @@ makalah: src/docs/Makalah.tex
 watch:
 	@npm run watch
 
-.PHONY: all watch
+notebook:
+	@jupyter notebook --no-browser
+
+.PHONY: all watch notebook
