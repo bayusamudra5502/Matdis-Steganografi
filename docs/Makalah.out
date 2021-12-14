@@ -1,0 +1,22 @@
+\BOOKMARK [1][-]{section.1}{Pendahuluan}{}% 1
+\BOOKMARK [1][-]{section.2}{Teori Dasar}{}% 2
+\BOOKMARK [2][-]{subsection.2.1}{Terminologi Dasar Steganografi}{section.2}% 3
+\BOOKMARK [2][-]{subsection.2.2}{Kriteria Kualitas Steganografi}{section.2}% 4
+\BOOKMARK [2][-]{subsection.2.3}{Jenis Steganalisis}{section.2}% 5
+\BOOKMARK [2][-]{subsection.2.4}{Representasi Bilangan Bulat}{section.2}% 6
+\BOOKMARK [2][-]{subsection.2.5}{Signifikansi Bit}{section.2}% 7
+\BOOKMARK [2][-]{subsection.2.6}{Citra Digital}{section.2}% 8
+\BOOKMARK [2][-]{subsection.2.7}{Luminans Relatif}{section.2}% 9
+\BOOKMARK [2][-]{subsection.2.8}{Rasio Kontras}{section.2}% 10
+\BOOKMARK [2][-]{subsection.2.9}{Keterbagian Bilangan Bulat}{section.2}% 11
+\BOOKMARK [2][-]{subsection.2.10}{Aritmatika Modulo}{section.2}% 12
+\BOOKMARK [2][-]{subsection.2.11}{Pembagi Bersama Terbesar}{section.2}% 13
+\BOOKMARK [2][-]{subsection.2.12}{Pembangkit Bilangan Acak}{section.2}% 14
+\BOOKMARK [1][-]{section.3}{Pembahasan}{}% 15
+\BOOKMARK [2][-]{subsection.3.1}{Metode Steganografi}{section.3}% 16
+\BOOKMARK [2][-]{subsection.3.2}{Pemilihan Parameter}{section.3}% 17
+\BOOKMARK [2][-]{subsection.3.3}{Perbandingan Steganalisis Dengan Pengacakan dan Tanpa Pengacakan}{section.3}% 18
+\BOOKMARK [2][-]{subsection.3.4}{Perbandingan Steganalisis Pada Cover Grayscale dan Berwarna}{section.3}% 19
+\BOOKMARK [2][-]{subsection.3.5}{Kelebihan dan Kekurangan Sistem Steganografi Metode LSB Acak}{section.3}% 20
+\BOOKMARK [1][-]{section.4}{Kesimpulan}{}% 21
+\BOOKMARK [1][-]{section*.3}{Daftar Pustaka}{}% 22

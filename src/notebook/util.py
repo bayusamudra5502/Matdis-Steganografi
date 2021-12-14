@@ -126,7 +126,8 @@ def extract_message(randomizer: Randomizer, image_1d: np.ndarray, lsb_number=1) 
 
   while not filled[idxRandom]:
     tmp += (image_1d[idxRandom] & mask) << (bits % 8)
-    bits += 2
+    filled[idxRandom] = True
+    bits += lsb_number
     idxRandom = randomizer.random()
 
     if bits % 8 == 0:
@@ -174,3 +175,28 @@ def get_b(m):
     num = random.randint(2,m)
   
   return num
+
+def lsb_copyer(array1d: np.ndarray, lsb_number=1):
+  result = array1d.copy()
+  mask = ((1 << lsb_number) - 1)
+
+  for i in range(len(result)):
+    tmp = 0
+    last = result[i] & mask
+    n = 0
+
+    while n < 8:
+      tmp <<= lsb_number
+      tmp += last
+
+      n += lsb_number
+    
+    result[i] = tmp
+  
+  matrix = result.reshape((863,863,3))
+
+  r = np.copy(matrix[:,:,0])
+  g = np.copy(matrix[:,:,1])
+  b = np.copy(matrix[:,:,2])
+
+  return r,g,b

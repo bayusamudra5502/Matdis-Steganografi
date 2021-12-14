@@ -7,8 +7,22 @@
 \usepackage{textcomp}
 \usepackage{xcolor}
 \usepackage{fancyhdr}
+\usepackage{hyperref}
 \usepackage[outputdir=docs]{minted}
 \usepackage{amsthm}
+\usepackage{ragged2e}
+
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=blue,      
+    urlcolor=blue,
+    pdftitle={Penerapan Bilangan Acak pada Steganografi},
+    pdfpagemode=FullScreen,
+}
+
+\urlstyle{same}
 
 \def\abstractname{Abstrak}
 \def\IEEEkeywordsname{Kata Kunci}
@@ -60,9 +74,11 @@ Institut Teknologi Bandung, Jl. Ganesha 10 Bandung 40132, Indonesia \\
 \maketitle
 
 \begin{abstract}
-Testing This document is a model and instructions for \LaTeX.
-This and the IEEEtran.cls file define the components of your paper [title, text, heads, etc.]. *CRITICAL: Do Not Use Symbols, Special Characters, Footnotes, 
-or Math in Paper Title or Abstract.
+Steganografi adalah ilmu yang mempelajari cara untuk menyembunyikan data. Steganografi memiliki banyak cara, salah satunya adalah menggunakan
+metode LSB dengan penempatan acak. Penempatan dilakukan berdasarkan hasil yang dikeluarkan oleh pembangkit bilangan acak LCG. Kelebihan dari
+penggunaan ini adalah mudahnya dalam implementasi, data yang disimpan lebih tersamarkan  saat pengujian menggunakan steganalisis visual,
+dan adanya sebuah kunci pengaman data yang disimpan melalui umpan dari pembangkit bilangan acak. Kelamahan dari metode ini adalah data yang disimpan
+sangat mudah rusak, mudah terdeteksi dengan melakukan steganalisis statistik, mudahnya kunci ditemukan dengan menggunakan \emph{brute-force}.
 \end{abstract}
 
 \begin{IEEEkeywords}
@@ -83,12 +99,12 @@ Vigenere Cipher, Affine Cipher, dan lainnya.
 
 Selain menggunakan kriptografi, terdapat sebuah teknik lain untuk mengamankan sebuah data. Teknik ini dikenal steganografi. 
 Steganografi adalah sebuah ilmu yang mempelajari teknik-teknik bagaimana menyembunyikan sebuah data dalam sebuah media sehingga 
-sulit untuk dikenali. \cite{b1} Steganografi ini sudah dikenal cukup lama sejak sejak bangsa Yunani. Steganografi yang pernah 
+sulit untuk dikenali. Steganografi ini sudah dikenal cukup lama sejak sejak bangsa Yunani. Steganografi yang pernah 
 tercatat pada zaman itu adalah saat penguasa bernama Histaiaeus, seorang penguasa Yunani, mengirimkan pesan tersembunyi kepada 
 Aristagoras untuk melawan Persia. Sang penguasa mengirimkan pesan tersebut dengan membotaki para budah dan rambutnya dibiarkan tumbuh, 
-lalu dikirimkanlah kepada Aristagoras. Hal ini dapat dilihat pada buku yang telah ditulis oleh Herodatus, \emph{Histories of Herodatus}.
+lalu dikirimkanlah kepada Aristagoras. Hal ini dapat dilihat pada buku yang telah ditulis oleh Herodatus, \emph{Histories of Herodatus}. \cite{b1}
 
-Steganografi ini berbeda dengan Kriptografi. Pada kriptografi, data diubah menjadi sesuatu yang dapat tidak memiliki arti. 
+Steganografi ini berbeda dengan Kriptografi. Pada kriptografi, data diubah menjadi sesuatu yang sulit dipahami makna pesan yang ada didalamnya. 
 Akan tetapi, data tersebut masih ada keberadaanya. Dalam Steganografi, data disembunyikan dalam sebuah medium sehingga tidak terlihat 
 keberadaannya. Medium ini bisa apapun, baik itu gambar, video, file, atau bahkan teks. Data pada medium ini pada akhirnya harus bisa 
 diekstraksi untuk diambil pesannya.
@@ -105,13 +121,13 @@ Dalam Steganografi, dikenal beberapa terminologi dasar. Berikut ini adalah beber
 \begin{itemize}
     \item Pesan tersembunyi adalah pesan yang disisipkan pada sebuah medium baik itu berupa video, image, audio, ataupun teks. 
     \item Cover adalah media yang digunakan untuk menyisipkan pesan.
-    \item \emph{Stego-object} adalah media yang telah tersisipkan pesan tersembunyi di dalamnya.
+    \item \emph{Stegeo-object} adalah media yang telah tersisipkan pesan tersembunyi di dalamnya.
     \item Steganalisis adalah cabang ilmu yang membahas mengenai pendeteksian pesan tersembunyi yang ada pada sebuah media. Terdapat 
     beberapa jenis metode dalam steganalisis ini yang akan dijelaskan pada bagian selanjutnya.  
 \end{itemize}
 
 \subsection{Kriteria Kualitas Steganografi}
-Sebuah steganografi dikatakan memiliki kualitas yang baik apabila mengikuti beberapa kriteria berikut:
+Sebuah steganografi dikatakan memiliki kualitas yang baik apabila mengikuti beberapa kriteria berikut: \cite{b1}
 
 \begin{itemize}
     \item \emph{Impercepibility} yaitu perubahan oleh steganografi tidak boleh dapat dirasakan oleh inderawi. Hal ini ditujukan agar
@@ -125,7 +141,7 @@ Sebuah steganografi dikatakan memiliki kualitas yang baik apabila mengikuti bebe
 \end{itemize}
 
 \subsection{Jenis Steganalisis}
-Steganalisis terbagi menjadi beberapa jenis. Berdasarkan kespesifikannya, steganalisis dibagi menjadi dua jenis, yaitu sebagai berikut
+Steganalisis terbagi menjadi beberapa jenis. Berdasarkan kespesifikannya, steganalisis dibagi menjadi dua jenis, yaitu sebagai berikut \cite{b1}
 \begin{itemize}
     \item \emph{Targeted Steganalysis} yaitu steganalisis yang membatasi analisis pada media atau algoritma steganografi tertentu. 
     \item \emph{Blind Steganalysis} yaitu steganalisis yang menganalisis dari berbagai algoritma dan format media. Hasil statistik dar
@@ -321,7 +337,7 @@ Untuk memulai LCG, diperlukan sebuah umpan yaitu $x_0$. Dengan umpan yang sama, 
 Parameter $a$, $b$ dan $m$ sangat menentukan periode dari LCG. Terdapat sebuah teorema
 yang dapat membantu menentukan nilai $a$, $b$, dan $m$ agar memperoleh periode maksimum. \cite{a1}
 
-\begin{theorem}[Teorema Hull–Dobell]
+\begin{theorem}[Teorema Hull–Dobell] \label{theo:hulldobell}
     Sebuah LCG yang didefinisikan pada definisi \ref{eq:lcg} dapat memiliki periode penuh, yaitu berperiode $m-1$ jika memenuhi syarat berikut:
     \begin{enumerate}
         \item $b$ relatif prima terhadap $m$,
@@ -331,14 +347,240 @@ yang dapat membantu menentukan nilai $a$, $b$, dan $m$ agar memperoleh periode m
 \end{theorem}
 
 \section{Pembahasan}
+\subsection{Metode Steganografi}
+Pada penelitian ini, akan digunakan metode steganografi berbasis LSB. Nilai $m$ yang digunakan adalah jumlah pixel yang terdapat pada cover. Metode penyisipan yang digunakan adalah sebgai berikut.
+\begin{enumerate}
+    \item Menentukan parameter $a$ dan $b$ untuk LCG.
+    \item Mengubah gambar menjadi dalam bentuk matriks pixel.
+    \item Mengubah matriks pixel menjadi array lanjar agar lebih mudah untuk diolah.
+    \item \label{step:1} Menentukan angka acak dengan menggunakan LCG.
+    \item Mengambil $n$ bit dari lsb dari data yang akan disisipkan, lalu menimpa pada array lanjar. 
+    \item Kembali melakukan dimulai dari langkah \ref{step:1} hingga semua data yang akan disisipkan sudah dimasukan atau tidak tersedia ruang untuk menambahkan data baru.
+    \item Menambahkan string \mintinline{python}{"\x00"} pada array lanjar dengan menggunakan angka acak selanjutnya. Langkah ini dilakukan apabila ruang untuk memasukan data ini masih tersedia.
+\end{enumerate}
+
+Langkah yang dilakukan untuk mengekstraksi data pada \emph{stegeo-object} adalah sebagai berikut:
+\begin{enumerate}
+    \item Menentukan parameter $a$ dan $b$ untuk LCG.
+    \item Mengubah gambar menjadi dalam bentuk matriks pixel.
+    \item Mengubah matriks pixel menjadi array lanjar agar lebih mudah untuk diolah.
+    \item \label{step:2} Menentukan angka acak dengan menggunakan LCG.
+    \item Mengambil $n$ bit dari lsb array lanjar pada indeks yang ditunjukan oleh hasil LCG. Kumpulkan hingga mendapatkan 8-bit. Pengumpulan menggunakan aturan little endian.
+    \item Bila telah mencapai 8-bit, ubahlah bit yang telah dikumpulkan menjadi karakter.
+    \item Lakukan kembali dimulai langkah \ref{step:2} hingga didapatkan 1 byte yang bernilai 0. Hasil itu menjadi penanda bahwa proses telah berakhir.
+\end{enumerate}
+
+Jumlah $n$ yang disarankan untuk melakukan proses ini adalah $n$ yang memenuhi $n = 2^k$ dengan $k$ adalah bilangan bulan dan $k \le 8$. Hal ini dilakukan agar mendapatkan kelipatan 8 setiap iterasi saat melakukan
+ekstraksi pesan.
+
+\subsection{Pemilihan Parameter}
+Pemilihan parameter $a$ dilakukan dengan cara menentukan semua faktor prima dari $m$. Semua faktor prima dikalikan dan didapatkanlah nilai $a-1$. Dengan kata lain, persamaan \ref{eq:arumus} adalah persamaan yang digunakan 
+untuk mencari nilai $a$ yang ideal.
+
+\begin{equation} \label{eq:arumus}
+    a = 1 + \prod_{i \in p} i, \text{ }p \text{ adalah faktor prima dari }m  
+\end{equation} 
+
+Apabila $m$ habis dibagi oleh 4, maka hasil perkalian dikalikan kembali dengan 2 agar menjaga nilai $m$ selalu memenuhi teorema \ref{theo:hulldobell}. Persamaan \ref{eq:arumus4} merupakan kasus khusus $m$ yang dapat dibagi oleh 4.
+
+\begin{equation} \label{eq:arumus4}
+    a = 1 + 2 \prod_{i \in p} i, \text{ }p \text{ adalah faktor prima dari }m  
+\end{equation} 
+
+Algoritma pada figur \ref{algo:parameter} merupakan algoritma yang dapat digunakan untuk menentukan nilai diatas.
+
+\begin{figure}
+    \begin{minted}{python}
+def get_lowest_multiplier(m):
+  """Menentukan nilai a"""
+  isDiv4 = (m % 4 == 0)
+  i = 2
+  factorMultiply = 1
+
+  while i * i <= m:
+    if m % i:
+      i += 1
+    else:
+      m //= i
+      factorMultiply *= i
+
+      while m % i == 0:
+        m //= i
+  
+  if m > 1:
+    factorMultiply *= m
+  
+  if isDiv4:
+    factorMultiply <<= 1
+  
+  return factorMultiply + 1
+
+def get_b(m):
+  num = 1
+
+  while m % num == 0:
+    num = random.randint(2,m)
+  
+  return num
+    \end{minted}
+    \caption{Algoritma Penentuan nilai parameter $a$ dan $b$}
+    \label{algo:parameter} 
+\end{figure}
+
+Penentuan parameter dengan algoritma diatas dijamin untuk memberikan nilai bilangan acak yang relatif lebih merata dan juga memiliki periode yang panjang.
+
+\subsection{Perbandingan Steganalisis Dengan Pengacakan dan Tanpa Pengacakan}
+Pada bagian ini, akan dicoba untuk menganalisis dampak dari pengacakan data yang dimasukan pada cover dengan tanpa dilakukannya pengacakan.
+Gambar yang akan digunakan adalah gambar grayscale yang ditunjukan oleh figur \ref{fig:cloudbw}.
+
+\begin{figure}
+    \centerline{\includegraphics[width=0.5\columnwidth]{cloud-original-gs.png}}
+    \caption{Cover grayscale yang digunakan untuk dilakukan steganografi}
+    \label{fig:cloudbw} 
+\end{figure}
+
+Cover pada figur \ref{fig:cloudbw} akan disisipi pesan sebanyak 5000 karakter dengan jumlah bit $n = 1$. Hasil pada figure \ref{fig:result} yang didapatkan setelah melakukan steganografi secara acak dan
+tidak acak.
+
+\begin{figure}
+    \centerline{
+        \includegraphics[width=0.4\columnwidth]{cloud-norandom-5000-gs.png}
+        \includegraphics[width=0.4\columnwidth]{cloud-random-5000-gs.png}
+    }
+    \caption{Stegano-object hasil dari penyisipan data pada gambar figur \ref{fig:cloudbw}. Gambar kiri merupakan hasil dengan tanpa pengacakan dan kanan merupakan hasil dengan pengacakan}
+    \label{fig:result} 
+\end{figure}
+
+Pada \emph{stego-object} tersebut tidak ditemukan perubahan yang signifikan pada cover. Akan tetapi, penempatan ini akan sangat berpengaruh pada saat melakukan steganalisis. Steganalisis dilakukan dengan
+cara mengubah semua bit pada pixel menjadi bit lsb. Hal ini menimbulkan hasil pada figur \ref{fig:steganalisis5000}.
+
+\begin{figure}
+    \centerline{
+        \includegraphics[width=0.4\columnwidth]{steganalisis-5000-bw.png}
+        \includegraphics[width=0.4\columnwidth]{steganalisis-5000-bw-random.png}
+    }
+    \caption{Hasil steganalisis figur \ref{fig:result}. Gambar kiri merupakan hasil dengan tanpa pengacakan dan kanan merupakan hasil dengan pengacakan}
+    \label{fig:steganalisis5000} 
+\end{figure}
+
+Bila dilihat secara lebih detail, gambar kiri menyisakan sekumpulan warna abu-abu pada awal hasil steganalisis. Akan tetapi pada gambar kanan, tidak begitu terlihat adanya perubahan pada hasil steganalisis.
+Hal ini disebabkan karena pengacakan membuat data tidak berada posisi yang cukup berjauhan. Oleh karena itu, pengacakan membuat proses steganalisis lebih sulit dibandingkan dengan tanpa adanya pengacakan.
+
+\subsection{Perbandingan Steganalisis Pada Cover Grayscale dan Berwarna}
+
+Pada bagian ini, akan dilakukan percobaan dengan melakukan proses steganalis pada media berwarna dan media grayscale. Media berwarna yang digunakan pada proses ini adalah figur \ref{fig:cloudcol} dan cover yang digunakan
+untuk media grayscale adalah figur \ref{fig:cloudbw}. Data yang akan disisipkan sebanyak 75.000 data. Pengaturan untuk konstanta $a$ diberikan nilai yang sama sebagaimana pada subbab sebelumnya.
+
+\begin{figure}
+    \centerline{\includegraphics[width=0.5\columnwidth]{cloud-original-warna.png}}
+    \caption{Cover berwarna akan digunakan dalam steganografi}
+    \label{fig:cloudcol} 
+\end{figure}
+
+Hasil steganografi yang didapatkan untuk media berwarna dan grayscale ditunjukan pada figur \ref{fig:result2}.
+
+\begin{figure}
+    \centerline{
+        \includegraphics[width=0.5\columnwidth]{cloud-hasil-75000.png}
+        \includegraphics[width=0.5\columnwidth]{cloud-hasil-75000-s.png}
+    }
+    \caption{Hasil steganografi gambar pada dua buah media}
+    \label{fig:result2} 
+\end{figure}
+
+Steganalisis yang dilakukan serupa degan steganalisis yang dilakukan pada subbab sebelumnya. Hasil dari steganalisis untuk gambar asli baik itu grayscale ditunjukan oleh figur \ref{fig:stegoribw} dan steganalisis untuk gambar 
+berwarna asli ditunjukan oleh \ref{fig:stegoriwarna}.
+
+\begin{figure}
+    \centerline{
+        \includegraphics[width=0.5\columnwidth]{steganalisis-original-bw.png}
+    }
+    \caption{Hasil steganalisis gambar grayscale asli}
+    \label{fig:stegoribw} 
+\end{figure}
+
+\begin{figure}
+    \centerline{
+        \includegraphics[width=0.3\columnwidth]{steg-warna-asli-r.png}
+        \includegraphics[width=0.3\columnwidth]{steg-warna-asli-g.png}
+        \includegraphics[width=0.3\columnwidth]{steg-warna-asli-b.png}
+    }
+    \caption{Hasil steganalisis gambar berwarna asli. Dimulai dari kiri hingga kanan berturut-turut menyatakan kanal R,G,dan B}
+    \label{fig:stegoriwarna} 
+\end{figure}
+
+Hasil steganalisis pada \emph{stegeo-object} berwarna ditunjukan pada figur \ref{fig:result3}, sedangkan untuk media grayscale
+ditunjukan pada figur \ref{fig:result4}. 
+
+\begin{figure}
+    \centerline{
+        \includegraphics[width=0.5\columnwidth]{steg-75000-gs.png}
+    }
+    \caption{Hasil steganalisis dari \emph{stegeo-object} dengan cover grayscale}
+    \label{fig:result3} 
+\end{figure}
+
+\begin{figure}
+    \centerline{
+        \includegraphics[width=0.3\columnwidth]{steg-75000-r.png}
+        \includegraphics[width=0.3\columnwidth]{steg-75000-g.png}
+        \includegraphics[width=0.3\columnwidth]{steg-75000-b.png}
+    }
+    \caption{Hasil steganalisis dari \emph{stegeo-object} dengan cover grayscale. Dimulai dari kiri secara berturut-turut menyatakan kanal warna R,G,dan B}
+    \label{fig:result4} 
+\end{figure}
+
+Dari hasil steganalisis pada figur \ref{fig:result3} terlihat terapat banyak sekali \emph{noise} yang muncul pada hasil steganalisis visual. 
+Pada hasil steganalisis pada figur \ref{fig:result4} terlihat bahwa \emph{noise} yang muncul lebih merata kepada tiap-tiap channel warna.
+Hal ini menunjukan bahwa tiap data disisipkan secara menyebar pada cover berwarna untuk setiap kanal. Hal ini tentu memberikan dampak baik karena
+data yang dimasukan akan lebih tersamarkan jika menganalisis menggunakan steganografi visual.
+
+Keuntungan penggunaan kanal berwarna, cover memberikan lebih banyak ruang yang dapat disimpan pada gambar. Pada gambar dengan pixel 24-bit akan memberikan ruang 3 kali lebih
+besar daripada menggunakan grayscale. Penambahan ruang juga dapat dicapai dengan menggunakan lebih dari satu bit LSB dari gambar.
+
+\subsection{Kelebihan dan Kekurangan Sistem Steganografi Metode LSB Acak}
+
+Sistem steganografi dengan metode LSB Acak memiliki keuntungan yaitu kemudahannya dalam implementasi. Sistem steganografi ini juga secara kasat menghasilkan \emph{stegeo-object} yang sulit untuk dibedakan dengan gambar
+yang asli. Hal ini dikarenakan setiap pixel warna berubah tidak jauh dari hasil asli sehingga perubahan antara keduanya dapat tersembunyikan. Sistem ini juga dapat diintegrasikan dengan kriptografi agar menjaga data
+lebih aman lagi dari sebelumnya. Pemilihan seed yang acak memiliki keuntungan yaitu menjadi kunci dari \emph{stegeo-object}.
+
+Kekurangan dari steganografi ini adalah data yang disimpan sangat rentan terhadap perubahan kecil. Salah satu perubahan yang dapat merusak steganografi ini adalah proses kompresi gambar. Selain itu, kunci berbasis seed
+sangat mudah sekali untuk dicari dengan melakukan \emph{brute-force} pada \emph{stegeo-object}. Sistem steganografi ini sangat lemah terhadap steganalisis statistik karena perubahan yang terjadi pada setiap proses akan
+memberikan dampak yang besar pada hasil statistik.
+
+\section{Kesimpulan}
+Steganografi merupakan salah satu cara untuk menyembunyikan data pada sebuah cover. Steganografi memiliki banyak cara, salah satunya adalah steganografi dengan metode LSB. Metode LSB ini sangatlah sederhana dan mudah
+untuk diimplementasikan pada sebuah media baik itu gambar maupun media lainnya. 
+
+Penggunaan sistem acak dan penggunaan multi kanal dapat meningkatkan kualitas dari steganografi yang dilakukan. hal ini ditunjukan dengan hasill steganalisis visual yang menunjukan sistem acak memberikan keamanan lebih
+dibandingkan tanpa pengacakan. Selain itu, penggunaan kanal secara merata dapat juga memberikan penyamaran lebih terhadap steganalisis visual sehingga lebih sulit dikenali.
+
+\section*{Ucapan Terima Kasih}
+Alhamdulillah, segala puji Allah SWT karena atas pertolongan dan rahmatnya, saya dapat menyelesaikan makalah ini. Penulis juga turut memberikan ucapan terima kasih kepada keluarga yang selalu setia untuk
+memberikan motivasi dan semangat untuk dapat menyelesaikan makalah ini. Penulis juga turut mengucapkan terima kasih kepada para dosen pengampu mata kuliah Matematika Diskrit, yaitu ibu Dr. Nur Ulfa Maulidevi, S.T., M.Sc., bapak Dr. Ir.
+Rinaldi Munir, M.T., dan ibu Dra. Harlili S., M.Sc. atas segala ilmunya yang telah membantu penulis dalam menyelesaikan makalah ini. Semoga dengan kebaikan yang telah diberikan, Allah akan menggantinya dengan yang lebih baik lagi.
+
+\section*{Sumber Daya}
+Segala sumber daya yang digunakan untuk membangun makalah ini dapat anda akses pada \url{https://github.com/bayusamudra5502/Matdis-Steganografi}.
 
 \begin{thebibliography}{00}
 \bibitem{b1} Munir, Rinaldi. 2019. \emph{Kriptografi Edisi Kedua}. Bandung: Penerbit Informatika 
 \bibitem{b2} Munir, RInaldi. 2020. \emph{Matematika Diskrit Revisi Ketujuh}. Bandung: Penerbit Informatika
 \bibitem{b3} HIdayatullah, Priyanto. 2017. \emph{Pengolahan Citra Digital Teori dan Aplikasi Nyata}. Bandung: Penerbit Informatika.
+\bibitem{b4} Briant, Randal E. \& O'Hallaron, David R. 2016. \emph{Computer System A Programmer's Perspective Third Global Edition}. London: Pearson Education.
 \bibitem{a1} Hull, T. E. \& Dobell, A. R. 1962. Random Number Generators. SIAM Review, 4(3), 233. Diakses pada 2021-12-04 melalui http://chagall.med.cornell.edu/BioinfoCourse/PDFs/Lecture4\\
 /random\_number\_generator.pdf.
 \bibitem{w1} Konsorsium World Wide Web. 2008. Web Content Accessibility Guidelines (WCAG) 2.0. Web content accessibility guidelines (WCAG) 2.0. Diakses 2021-12-04 melalui https://www.w3.org/TR/2008/REC-WCAG20-20081211/. 
 \end{thebibliography}
+
+\section*{Pernyataan}
+Dengan ini saya menyatakan bahwa makalah yang saya tulis adalah tulisan saya sendiri, bukan sanduran, ataupun terjemahan dari makalah orang lain, dan bukan plagiasi.
+
+
+\vspace{20px}
+\hspace*{\fill} Cimahi, 14 Desember 2021
+
+\vspace{30px}
+\hspace*{\fill} Bayu Samudra
 
 \end{document}
