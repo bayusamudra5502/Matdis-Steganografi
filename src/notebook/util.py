@@ -99,10 +99,8 @@ def insert_message(randomizer: Randomizer, image_1d: np.ndarray, message: str, l
     if filled[idxRandom]:
       break
     
-    print(idxRandom, result[idxRandom], end=" -> ")
     result[idxRandom] &= mask
     result[idxRandom] |= numlist[0] % (1 << lsb_number)
-    print(result[idxRandom])
 
     filled[idxRandom] = True
     numlist[0] >>= lsb_number
@@ -127,15 +125,11 @@ def extract_message(randomizer: Randomizer, image_1d: np.ndarray, lsb_number=1) 
   bits = 0
 
   while not filled[idxRandom]:
-    print(idxRandom, "=", image_1d[idxRandom] & mask)
     tmp += (image_1d[idxRandom] & mask) << (bits % 8)
     bits += 2
     idxRandom = randomizer.random()
 
     if bits % 8 == 0:
-      if bits > 100:
-        break
-
       if tmp == 0:
         break
       else:
