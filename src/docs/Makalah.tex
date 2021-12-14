@@ -223,6 +223,37 @@ diklasifikasikan menjadi beberapa jenis yaitu sebagai berikut: \cite{b1}\cite{b3
 
 \end{itemize}
 
+\subsection{Luminans Relatif}
+Tingkat Luminans Relatif sebuah warna ini dapat dihitung menggunakan persamaan \ref{eq:lum}.\cite{w1}
+
+\begin{equation} \label{eq:lum}
+    L = 0.2126 R_p + 0.7152 G_p + 0.0722 B_p
+\end{equation}
+
+yang dalam hal ini
+
+$$ 
+X_p = \begin{cases}
+    \frac{X_r}{12.92}, &\text{jika } X_r \le 0.03928 \\
+    (\frac{X_r+0.055}{1.055}) ^ {2.4},  &\text{jika } X_r > 0.03928 
+\end{cases} 
+$$
+
+dengan $X$ adalah salah satu dari $R$, $G$, ataupun $B$.
+
+Nilai dari $X_r$ merupakan rasio suatu kanal warna terhadap nilai maksimumnya.
+
+\subsection{Rasio Kontras}
+Rasio kontras antara dua buah warna menyatakan seberapa kontras kedua warna tersebut. Menurut W3C, tingkat
+rasio kontras didefinisikan pada persamaan \ref{eq:cr}.\cite{w1}
+
+\begin{equation} \label{eq:cr}
+    R = \frac{L_1 + 0.05}{L_2 + 0.05}
+\end{equation}
+
+yang dalam hal ini $L_n$ adalah luminans relatif dari satu warna dengan $ L_1 > L_2 $.
+
+
 \subsection{Keterbagian Bilangan Bulat}
 Pembagian merupakan konsep penting yang menjadi dasar dari teori bilangan. Sebuah bilangan dapat membagi habis bilangan lain. Definisi dari habis dibagi dapat dilihat pada
 definisi \ref{def:divided}.
@@ -305,7 +336,9 @@ yang dapat membantu menentukan nilai $a$, $b$, dan $m$ agar memperoleh periode m
 \bibitem{b1} Munir, Rinaldi. 2019. \emph{Kriptografi Edisi Kedua}. Bandung: Penerbit Informatika 
 \bibitem{b2} Munir, RInaldi. 2020. \emph{Matematika Diskrit Revisi Ketujuh}. Bandung: Penerbit Informatika
 \bibitem{b3} HIdayatullah, Priyanto. 2017. \emph{Pengolahan Citra Digital Teori dan Aplikasi Nyata}. Bandung: Penerbit Informatika.
-\bibitem{a1} Hull, T. E. \& Dobell, A. R. 1962. Random Number Generators. SIAM Review, 4(3), 233. http://chagall.med.cornell.edu/BioinfoCourse/PDFs/Lecture4/random\_number\_generator.pdf. Diakses pada 14-12-2021.
+\bibitem{a1} Hull, T. E. \& Dobell, A. R. 1962. Random Number Generators. SIAM Review, 4(3), 233. Diakses pada 2021-12-04 melalui http://chagall.med.cornell.edu/BioinfoCourse/PDFs/Lecture4\\
+/random\_number\_generator.pdf.
+\bibitem{w1} Konsorsium World Wide Web. 2008. Web Content Accessibility Guidelines (WCAG) 2.0. Web content accessibility guidelines (WCAG) 2.0. Diakses 2021-12-04 melalui https://www.w3.org/TR/2008/REC-WCAG20-20081211/. 
 \end{thebibliography}
 
 \end{document}
